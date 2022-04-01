@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel = "shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1163/1163657.png"type="image/x-icon"/>
+    <title>Weather</title>
+</head>
+<body>
+    <section class="main">
+        <div class="container">
+
+            <div class="form">
+                <fieldset>
+                    <form action="/" method="post">
+                        <div class="form__find">
+                            <input name="city" type="text" class="form-input" placeholder="Enter a City" required>
+                            <button type="submit" class="form-button" value="Get Weather"><img src="./img/searching.png" alt="searching" class="form__find-icon"></button>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <%if( weather !== null){ %>
+                <div class="swiper">
+                    <h2 class="name-city"><%=place %></h2>
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                      <!-- Slides -->
+                      <% for(var i=0; i < 8; i++) {%>
+                      <div class="swiper-slide">
+                        <div class="swiper-block">
+                            <img class="img-icon" src="<%=icon[i] %>" alt="icon">
+                            <p class="swiper__global-text swiper-description"><%=description[i] %></p>
+                            <p class="swiper__global-text">Temperature: <%=temp[i] %>°</p>
+                            <p class="swiper__global-text">Feels like: <%=feels[i] %>°</p>
+                            <p class="swiper__global-text">Humidity: <%=humidity[i] %>%</p>
+                            <p class="swiper__global-text">Wind speed: <%=speed[i] %> m/s</p>
+                            <p class="swiper__global-text">Precipitation: <%=precipitation[i] %>%</p>
+                            <p class="swiper__global-text swiper-timezone"><%=timezone[i] %></p>
+                        </div>
+                      </div>
+                      <%} %>
+                      
+                    </div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                  </div>
+                  <p class="info-footer">All rights to wear © 2010-2022 Kornev Nikita</p>
+            <% } %>
+            
+            <% if(err !== null){ %>
+                <div class="error">
+                    <p class="error-msg"><%=err %></p>
+                </div>
+            <% } %>
+            
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="./js/swiper.js"></script>
+</body>
+</html>
